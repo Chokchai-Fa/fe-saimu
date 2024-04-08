@@ -4,7 +4,9 @@ import Image from 'react-bootstrap/Image';
 
 import './index.css'
 import logo from '../../assets/logo.png'
+import background from '../../assets/background.png'
 import { useState } from 'react';
+
 
 const LoginScreen = () =>{
 
@@ -26,7 +28,12 @@ const LoginScreen = () =>{
   };
 
     return (
-        <div className='container' >
+      <div>
+        <div className='container' 
+          style={{
+            backgroundImage: `url(${background})` 
+          }}
+        >
           <div className='inner-container'>
            <div className='header'>
             <Image className= "logo" src = {logo} />
@@ -69,6 +76,7 @@ const LoginScreen = () =>{
       </Form>
       </div>
 
+      </div>
       </div>
       </div>
     )

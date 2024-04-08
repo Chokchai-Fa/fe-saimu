@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh; /* Full height of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    flex-direction: column;
   }
 
   .inner-container {
@@ -13,6 +14,7 @@
     border: 2px solid #ccc; /* Add border to the inner container */
     border-radius: 20px;
     padding: 50px; /* Add padding to create space between border and content */
+    background-color: #ffffff;
 
   }
   
