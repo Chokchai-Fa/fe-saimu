@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Full height of the viewport */
+  }
+
+  .inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc; /* Add border to the inner container */
+    border-radius: 20px;
+    padding: 50px; /* Add padding to create space between border and content */
+
+  }
+  
+.header {
+    justify-content: center;
+    padding: 2vh;
+    align-items: center;
+    display: flex; 
+    flex-direction: column;
+
+}
+
+.logo {
+    width: 40%;
+    justify-content: center;
+}
