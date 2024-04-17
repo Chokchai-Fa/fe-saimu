@@ -19,5 +19,13 @@
 }
 
 .conclusion{
+    border: 2px solid #ccc; /* Add border to the inner container */
+    border-radius: 20px;
+    width: 70%;
+    height: 70%;
+    margin: 30px
+}
+
+.conclusion-text{
     margin: 30px
 }

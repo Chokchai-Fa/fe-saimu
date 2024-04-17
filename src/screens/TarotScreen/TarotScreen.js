@@ -77,30 +77,33 @@ const TarotScreen = () => {
   const hadleSubmitQuestion = async () => {
     // call api for retrive data
 
-    // try {
-    //   const response = await axios.post(
-    //     "https://us-central1-stone-arcade-420004.cloudfunctions.net/read_tarot",
-    //     { question: question }
-    //   );
-    //   if (response.status == 200) {
-    //     setPastText(response.data.past.result);
-    //     setPastCard(response.data.past.card_name);
-    //     setPresentText(response.data.present.result);
-    //     setPresentCard(response.data.present.card_name);
-    //     setFutureText(response.data.future.result);
-    //     setFutureCard(response.data.future.card_name);
-    //     setRecommendText(response.data.advise.result);
-    //     setRecommendCard(response.data.advise.card_name);
-    //     setConclusionText(response.data.conclusion)
-    //     setSubmitQuestion(true);
-    //   }
+    try {
+      const response = await axios.post(
+        "https://us-central1-stone-arcade-420004.cloudfunctions.net/read_tarot",
+        { question: question }
+      );
+      if (response.status == 200) {
 
-    //   setSubmitQuestion(true);
-    // } catch (e) {
-    //     errorNotify("call api error");
-    // }
+        console.log("xxx", response.data)
+        setPastText(response.data.past.result);
+        setPastCard(response.data.past.card_name);
+        setPresentText(response.data.present.result);
+        setPresentCard(response.data.present.card_name);
+        setFutureText(response.data.future.result);
+        setFutureCard(response.data.future.card_name);
+        setRecommendText(response.data.advice.result);
+        setRecommendCard(response.data.advice.card_name);
+        setConclusionText(response.data.conclusion)
+        setSubmitQuestion(true);
+      }
 
-    setSubmitQuestion(true);
+      setSubmitQuestion(true);
+    } catch (e) {
+        console.log(e)
+        errorNotify("call api error");
+    }
+
+    // setSubmitQuestion(true);
   };
 
   return (
@@ -156,7 +159,7 @@ const TarotScreen = () => {
             body={body}
           />
           {openPast && openPresent && openFuture && openRecommend ? (
-            <div className="conclusion">{conclusionText}</div>
+            <div className="conclusion"><p className="conclusion-text">{conclusionText}</p></div>
           ) : (
             <></>
           )}

@@ -42,7 +42,7 @@ const LoginScreen = () => {
     console.log(email, password);
 
     // validation input form
-    if ((email == "") | (password == "")) {
+    if ((email == "") || (password == "")) {
       if (email == "") {
         errorNotify("email cannot empty");
       }
