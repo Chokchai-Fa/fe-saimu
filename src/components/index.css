@@ -1,0 +1,34 @@
+.card {
+    width: 35%;
+    justify-content: center;
+    margin: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+
+  .mode-selector {
+    width: 100%;
+    justify-content: center;
+    margin: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+
+
+  .mode-container:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .mode-container{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ccc; /* Add border to the inner container */
+    border-radius: 20px;
+    height: 60vh;
+    width: 50vh;
+  }

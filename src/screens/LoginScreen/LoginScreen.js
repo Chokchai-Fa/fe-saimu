@@ -6,10 +6,27 @@ import "./index.css";
 import logo from "../../assets/logo.png";
 import background from "../../assets/background.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const errorNotify = (errorText) =>
+  toast.error(errorText, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -23,6 +40,22 @@ const LoginScreen = () => {
     e.preventDefault();
 
     console.log(email, password);
+
+    // validation input form
+    if ((email == "") | (password == "")) {
+      if (email == "") {
+        errorNotify("email cannot empty");
+      }
+
+      if (password == "") {
+        errorNotify("password cannot empty");
+      }
+    }else{
+      // if password is correct and can login
+      navigate("/home");
+    }
+
+
   };
 
   return (
@@ -72,10 +105,9 @@ const LoginScreen = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
-
-const style = {};
 
 export default LoginScreen;

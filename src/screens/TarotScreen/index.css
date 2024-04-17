@@ -1,0 +1,23 @@
+.card-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-top: 70px;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px
+}
+
+.text-input{
+    width: 75%;
+    margin: 30px;
+}
+
+.conclusion{
+    margin: 30px
+}
