@@ -29,8 +29,8 @@
     align-items: center;
     border: 2px solid #ccc; /* Add border to the inner container */
     border-radius: 20px;
-    height: 200vh;
-    /* width: 100vh; */
+    height: 60vh;
+    width: 50vh;
   }
 
   .image-modal{
