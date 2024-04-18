@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Image from "react-bootstrap/Image";
 
 const PredictModal = (props) => {
   return (
@@ -16,6 +17,7 @@ const PredictModal = (props) => {
       </Modal.Header>
     <Modal.Body>
       <h4>ไพ่: {props.card}</h4>
+      <Image className="image-modal" src={props.image} />
         <p>
           {props.body}
         </p>

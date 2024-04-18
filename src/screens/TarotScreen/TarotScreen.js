@@ -13,15 +13,20 @@ const TarotScreen = () => {
   const [header, setHeader] = useState("");
   const [body, setBody] = useState("");
   const [card, setCard] = useState("");
+  const [image, setImage] = useState("");
   const [question, setQuestion] = useState("");
   const [pastText, setPastText] = useState("");
   const [pastcard, setPastCard] = useState("");
+  const [pastImage, setPastImage] = useState("");
   const [presentText, setPresentText] = useState("");
   const [presentcard, setPresentCard] = useState("");
+  const [presentImage, setPresentImage] = useState("");
   const [futureText, setFutureText] = useState("");
   const [futurecard, setFutureCard] = useState("");
+  const [futureImage, setFutureImage] = useState("");
   const [recommendText, setRecommendText] = useState("");
   const [recommendcard, setRecommendCard] = useState("");
+  const [recommendImage, setRecommendImage] = useState("");
   const [conclusionText, setConclusionText] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
   const [isSubmitQuestion, setSubmitQuestion] = useState(false);
@@ -35,6 +40,7 @@ const TarotScreen = () => {
     setBody(pastText);
     setCard(pastcard);
     setOpenPast(true);
+    setImage(pastImage);
   };
 
   const handlePresent = () => {
@@ -42,6 +48,7 @@ const TarotScreen = () => {
     setBody(presentText);
     setCard(presentcard);
     setOpenPresent(true);
+    setImage(presentImage);
   };
 
   const handleFuture = () => {
@@ -49,6 +56,7 @@ const TarotScreen = () => {
     setBody(futureText);
     setCard(futurecard);
     setOpenFuture(true);
+    setImage(futureImage);
   };
 
   const handleSuggestion = () => {
@@ -56,6 +64,7 @@ const TarotScreen = () => {
     setBody(recommendText);
     setCard(recommendcard);
     setOpenRecommend(true);
+    setImage(recommendImage);
   };
 
   const handleChangeQuestion = (e) => {
@@ -83,17 +92,19 @@ const TarotScreen = () => {
         { question: question }
       );
       if (response.status == 200) {
-
-        console.log("xxx", response.data)
         setPastText(response.data.past.result);
         setPastCard(response.data.past.card_name);
+        setPastImage(response.data.past.image_url);
         setPresentText(response.data.present.result);
         setPresentCard(response.data.present.card_name);
+        setPresentImage(response.data.present.image_url);
         setFutureText(response.data.future.result);
         setFutureCard(response.data.future.card_name);
+        setFutureImage(response.data.future.image_url);
         setRecommendText(response.data.advice.result);
         setRecommendCard(response.data.advice.card_name);
-        setConclusionText(response.data.conclusion)
+        setRecommendImage(response.data.advice.image_url);
+        setConclusionText(response.data.conclusion);
         setSubmitQuestion(true);
       }
 
@@ -157,6 +168,7 @@ const TarotScreen = () => {
             header={header}
             card={card}
             body={body}
+            image={image}
           />
           {openPast && openPresent && openFuture && openRecommend ? (
             <div className="conclusion"><p className="conclusion-text">{conclusionText}</p></div>
