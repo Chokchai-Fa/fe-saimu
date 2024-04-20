@@ -9,6 +9,11 @@ import SignUpScreen from "./screens/SignUpScreen/SignUpScreen";
 import LuckyNumberScreen from "./screens/LuckyNumberScreen/LuckyNumberScreen";
 import LuckyShirtScreen from "./screens/LuckyShirtScreen/LuckyShirtScreen";
 
+export const BE_HOST = process.env.REACT_APP_BE_HOST;
+
+// localStorage.setItem("login", false)
+// localStorage.setItem("token", "");
+
 function App() {
   return (
     <div>

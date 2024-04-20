@@ -5,28 +5,29 @@ import Image from "react-bootstrap/Image";
 import "./index.css";
 import logo from "../../assets/logo.png";
 import background from "../../assets/background.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BE_HOST } from "../../App";
+import axios from "axios";
+import { validateLogin } from "../../service/authen";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { errorNotify, successNotify } from "../../components/Toast";
 
 const LoginScreen = () => {
+
+  useEffect(()=>{
+    const isLogin = validateLogin();
+    if (isLogin) {
+      navigate("/home");
+    }
+  },[])
+
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const errorNotify = (errorText) =>
-  toast.error(errorText, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -36,10 +37,8 @@ const LoginScreen = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
-    console.log(email, password);
 
     // validation input form
     if ((email == "") || (password == "")) {
@@ -51,11 +50,27 @@ const LoginScreen = () => {
         errorNotify("password cannot empty");
       }
     }else{
-      // if password is correct and can login
-      navigate("/home");
+
+      try{
+        const response = await axios.post(`${BE_HOST}/login`, {
+          username: email,
+          password: password,
+        }, {headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }});
+        if (response.status == 200) {
+          localStorage.setItem("login", true);
+          localStorage.setItem("token", response.data.token.access_token);
+          successNotify("login successfully");
+          setTimeout(() => {
+            navigate("/home");
+          }, 1000);
+        }
+      }catch(e){
+        errorNotify("login failed, please try again");
+      }
     }
-
-
   };
 
   return (

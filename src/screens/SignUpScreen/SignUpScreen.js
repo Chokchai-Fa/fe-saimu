@@ -1,18 +1,23 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { errorNotify, successNotify } from "../../components/Toast";
+import { useNavigate } from "react-router-dom";
 
 import "./index.css";
 import logo from "../../assets/logo.png";
 import background from "../../assets/background.png";
+import axios from "axios";
 import { useState } from "react";
+import { BE_HOST } from "../../App";
 
 const SignUpScreen = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,46 +27,56 @@ const SignUpScreen = () => {
     setPassword(e.target.value);
   };
 
+  const handleFullNameChange = (e) => {
+    setFullName(e.target.value);
+  };
+
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
   };
 
-  const errorNotify = (errorText) =>
-    toast.error(errorText, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("xxx",password, confirmPassword);
-
-    console.log(password != confirmPassword)
-
-    if (email == ""){
+    
+    if (
+      email == "" ||
+      password == "" ||
+      confirmPassword == "" ||
+      password != confirmPassword
+    ) {
+      if (email == "") {
         errorNotify("email cannot empty");
-    }
+      }
 
-    if (password == ""){
+      if (password == "") {
         errorNotify("password cannot empty");
-    }
+      }
 
-    if (confirmPassword == ""){
+      if (confirmPassword == "") {
         errorNotify("confirm password cannot empty");
-    }
+      }
 
-    if (password != confirmPassword) {
-      errorNotify("password and confirm password missmatch!");
+      if (password != confirmPassword) {
+        errorNotify("password and confirm password missmatch!");
+      }
+    } else {
+      // call api for signup
+      try {
+        const response = await axios.post(`${BE_HOST}/signup`, {
+          email: email,
+          full_name: fullName,
+          password: password,
+        });
+        if (response.status == 200) {
+          successNotify("register successfully");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        }
+      } catch (e) {
+        errorNotify("signup failed, please try again");
+      }
     }
-
-    // call api for signup
   };
 
   return (
@@ -86,6 +101,14 @@ const SignUpScreen = () => {
                   placeholder="Enter email"
                   value={email}
                   onChange={handleEmailChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formFullName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  placeholder="Enter Full Name"
+                  value={fullName}
+                  onChange={handleFullNameChange}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
