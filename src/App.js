@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
@@ -17,17 +17,17 @@ export const BE_HOST = process.env.REACT_APP_BE_HOST;
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
-        <Route path="/" element={<LoginScreen />} />
-          <Route path="/home" element={<HomeScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/tarot" element={<TarotScreen />} />
-          <Route path="/luckynumber" element={<LuckyNumberScreen />} />
-          <Route path="/luckyshirt" element={<LuckyShirtScreen />} />
+          <Route path="/" element={<LoginScreen />} />
+            <Route path="/home" element={<HomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
+            <Route path="/tarot" element={<TarotScreen />} />
+            <Route path="/luckynumber" element={<LuckyNumberScreen />} />
+            <Route path="/luckyshirt" element={<LuckyShirtScreen />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

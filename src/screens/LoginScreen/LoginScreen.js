@@ -50,7 +50,6 @@ const LoginScreen = () => {
         errorNotify("password cannot empty");
       }
     }else{
-
       try{
         const response = await axios.post(`${BE_HOST}/login`, {
           username: email,
