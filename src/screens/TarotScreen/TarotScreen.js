@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BE_HOST } from "../../App";
+import background from "../../assets/tarot-background.jpg";
 
 const TarotScreen = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -85,11 +87,14 @@ const TarotScreen = () => {
 
   const hadleSubmitQuestion = async () => {
     // call api for retrive data
+    const authorization = "Bearer " + localStorage.getItem("token");
 
     try {
-      const response = await axios.post(
-        "https://us-central1-stone-arcade-420004.cloudfunctions.net/read_tarot",
-        { question: question }
+      const response = await axios.get(
+        `${BE_HOST}/vertexai/read_tarot/${question}`,
+        {
+          headers: { Authorization: authorization },
+        }
       );
       if (response.status == 200) {
         setPastText(response.data.past.result);
@@ -110,8 +115,8 @@ const TarotScreen = () => {
 
       setSubmitQuestion(true);
     } catch (e) {
-        console.log(e)
-        errorNotify("call api error");
+      console.log(e);
+      errorNotify("call api error");
     }
 
     // setSubmitQuestion(true);
@@ -120,10 +125,17 @@ const TarotScreen = () => {
   return (
     <>
       {!isSubmitQuestion ? (
-        <div className="main-container">
-          <h1>โปรดกรอกคำถามเพื่อการทำนาย</h1>
+        <div
+          className="main-container"
+          style={{
+            backgroundImage: `url(${background})`,
+          }}
+        >
+          <h1 className="tarot-text">โปรดกรอกคำถามเพื่อการทำนาย</h1>
           <div className="text-input">
-            <Form.Label>คำถามที่ต้องการจะทำนาย</Form.Label>
+            <Form.Label className="tarot-text">
+              คำถามที่ต้องการจะทำนาย
+            </Form.Label>
             <Form.Control
               size="lg"
               placeholder="โปรดกรอกคำถาม"
@@ -132,10 +144,40 @@ const TarotScreen = () => {
             />
           </div>
           <Button onClick={hadleSubmitQuestion}>ยืนยัน</Button>
+
+          <div className="conclusion">
+            <p className="suggestion-text"><span style={{fontWeight: "bold"}}>คำแนะนำสำหรับ ดูดวงไพ่ทาโร่ต์</span> 
+            <br/><br />1. การดูดวงด้วยไพ่ทาโร่ต์ 4 ใบ
+              นี้จะใช้ไพ่วางในตำแหน่งต่างๆ ได้แก่ อดีต ปัจจุบัน อนาคต และคำแนะนำ
+              ท่านสามารถอ่านคำทำนายหรือตีความจากรูปหน้าไพ่ได้
+              โดยการตีความเป็นไปได้หลากหลาย
+              คำทำนายของทางเว็บเป็นเพียงแนวทางหนึ่งเท่านั้น ไม่ได้ถูกต้อง 100%
+            <br/>2. การดูดวงด้วยไพ่ทาโร่ต์นี้ จะใช้ 'จิต' ของท่านในการทำนาย
+              เพราะเชื่อว่าจิต มีพลังเหนือร่างกาย และเป็นตัวกำหนดวิถีความเป็นไป
+              ดังนั้นในการพยากรณ์ด้วยไพ่ทาโรต์ ท่านต้องมีสมาธิและศรัทธา
+              รวมสมาธิไว้ที่ไพ่ (สำคัญมาก) ไพ่เป็นเพียงสื่อกลาง
+              รูปและสัญลักษณ์บนไพ่ที่หยิบได้
+              สื่อสารบอกเล่าเรื่องราวต่างๆที่อาจจะเกิดขึ้น 
+            <br/>3. หากท่านไม่มีสมาธิ
+              หรือไม่สะดวกเรื่องเวลา กำลังเร่งรีบ หรือติดภารกิจอื่นๆอยู่
+              แนะนำให้เลือกไพ่ในภายหลัง 
+            <br/>4. คำทำนายเป็นเพียงแนวทาง หากไพ่ไม่ดี
+              ขออย่าพึ่งเสียกำลังใจ ขอให้ใช้สติ และปัญญา
+              ในการรับมือกับปัญหาที่จะเกิดขึ้น 
+            <br/>5. หากคำทำนายนี้ล่วงเกินท่าน
+              ทำให้ไม่สบายใจ หรือทำให้เกิดความไม่พอใจใดๆก็ตาม
+              ขอท่านให้อภัยทางผู้จัดทำด้วย
+            </p>
+          </div>
         </div>
       ) : (
-        <div className="main-container">
-          <h1>โปรดเลือกการ์ดของคุณเพื่อดูผลคำทำนาย</h1>
+        <div
+          className="main2-container"
+          style={{
+            backgroundImage: `url(${background})`,
+          }}
+        >
+          <h1 className="tarot-text">โปรดเลือกการ์ดของคุณเพื่อดูผลคำทำนาย</h1>
           <div className="card-container">
             <TarotCard
               onClick={() => {
@@ -171,7 +213,9 @@ const TarotScreen = () => {
             image={image}
           />
           {openPast && openPresent && openFuture && openRecommend ? (
-            <div className="conclusion"><p className="conclusion-text">{conclusionText}</p></div>
+            <div className="conclusion">
+              <p className="conclusion-text">{conclusionText}</p>
+            </div>
           ) : (
             <></>
           )}

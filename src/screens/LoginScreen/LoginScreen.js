@@ -112,9 +112,14 @@ const LoginScreen = () => {
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me for Good Fortune" />
               </Form.Group>
+              <div className="button-container">
               <Button variant="danger" type="submit" onClick={handleSubmit}>
                 Login
               </Button>
+              <Button variant="secondary" type="submit" onClick={()=>{navigate("/signup")}}>
+                Signup
+              </Button>
+              </div>
             </Form>
           </div>
         </div>

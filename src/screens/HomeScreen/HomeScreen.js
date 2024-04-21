@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { validateLogin } from "../../service/authen";
 import "./index.css";
+import background from '../../assets/backgroud-home.png';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -24,13 +25,17 @@ const HomeScreen = () => {
   const logOut = () => {
     localStorage.setItem("login", false);
     localStorage.setItem("token", "");
-    setTimeout(()=>{
+    setTimeout(() => {
       navigate("/login");
-    }, 1000)
+    }, 1000);
   };
 
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+      }}
+    >
       <div className="logout-button">
         <Button variant="danger" type="submit" onClick={logOut}>
           Logout
@@ -68,7 +73,7 @@ const HomeScreen = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

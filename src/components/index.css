@@ -1,7 +1,8 @@
 .card {
-    width: 35%;
+    width: 25%;
     justify-content: center;
     margin: 10px;
+    /* height: 20vh; */
     transition: box-shadow 0.3s ease;
   }
   
@@ -19,7 +20,7 @@
 
 
   .mode-container:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
   }
 
   .mode-container{
@@ -29,7 +30,8 @@
     align-items: center;
     border: 2px solid #ccc; /* Add border to the inner container */
     border-radius: 20px;
-    height: 40vh;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.8); /* White with 50% transparency */
   }
 
   .image-modal{

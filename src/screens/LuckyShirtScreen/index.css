@@ -1,27 +1,51 @@
-.home-box-container{
-    /* justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; */
+.home-box-shirt-container{
     border: 2px solid #ccc; /* Add border to the inner container */
     border-radius: 20px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 70%;
-    height: 70%;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* White with 50% transparency */
   }
 
 
-  .home-container{
+  .home-shirt-container{
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    height: 100vh;
   }
 
   .lucky-text{
     margin: 20px;
+    white-space: pre-line;
   }
+
+  .selector-header{
+    display: flex;
+    flex-direction: row;
+  }
+
+.shirt-suggestion{
+  border: 2px solid #ccc; /* Add border to the inner container */
+  border-radius: 20px;
+  width: 70%;
+  /* height: 70%; */
+  margin: 30px;
+  background-color: rgba(255, 255, 255, 0.8); /* White with 50% transparency */
+}
+
+.shirt-suggesstion-text{
+  margin: 20px;
+}
+
+
+.shirt-header{
+color: #ffff;
+text-shadow: 
+-1px -1px 0 #000,  
+1px -1px 0 #000,
+-1px 1px 0 #000,
+1px 1px 0 #000; /* Border effect */
+margin-top: 20px;
+}
