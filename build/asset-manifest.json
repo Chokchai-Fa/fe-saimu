@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3cc75ca4.css",
+    "main.js": "/static/js/main.1f6577e0.js",
+    "static/js/453.48bc42ac.chunk.js": "/static/js/453.48bc42ac.chunk.js",
+    "static/media/tarrotcard.png": "/static/media/tarrotcard.30090db41c0d52f6dcf5.png",
+    "static/media/backgroud-home.png": "/static/media/backgroud-home.f67d329906e44c7e596e.png",
+    "static/media/tarrot.png": "/static/media/tarrot.e02b3554b8b3e486a88a.png",
+    "static/media/background-number.jpg": "/static/media/background-number.7b67247175c3cabfb340.jpg",
+    "static/media/tarot-background.jpg": "/static/media/tarot-background.c489f52c26c668c0b2b8.jpg",
+    "static/media/background-shirt.jpg": "/static/media/background-shirt.e6b8ab0d15dd9e603605.jpg",
+    "static/media/luckynumber.png": "/static/media/luckynumber.ee110dbcfa613a5dbe46.png",
+    "static/media/logo.png": "/static/media/logo.1c28e1a9c31da49687fa.png",
+    "static/media/tshirt.png": "/static/media/tshirt.11d5785f5eb585f6044f.png",
+    "static/media/background.png": "/static/media/background.381468c2ba2ca673d111.png",
+    "index.html": "/index.html",
+    "main.3cc75ca4.css.map": "/static/css/main.3cc75ca4.css.map",
+    "main.1f6577e0.js.map": "/static/js/main.1f6577e0.js.map",
+    "453.48bc42ac.chunk.js.map": "/static/js/453.48bc42ac.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3cc75ca4.css",
+    "static/js/main.1f6577e0.js"
+  ]
+}
